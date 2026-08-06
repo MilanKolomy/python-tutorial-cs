@@ -1,0 +1,5 @@
+# Stabilní konce řádků napříč Windows, Linuxem a generátory dokumentace
+* text=auto eol=lf
+
+# Binární inventář Sphinx intersphinx
+*.inv binary

@@ -1,0 +1,2 @@
+# Samostatné závislosti pro sestavení překladu; odpovídá omezení upstreamu.
+sphinx<9.0.0

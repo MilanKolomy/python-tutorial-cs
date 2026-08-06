@@ -1,0 +1,23 @@
+# Lokální Python prostředí
+.venv/
+venv/
+
+# Referenční klon CPythonu má vlastní Git repozitář
+upstream-cpython/
+
+# Generované a dočasné soubory
+outputs/
+work/
+_build/
+source/_build/
+*.doctree
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Systémové a editorové soubory
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
