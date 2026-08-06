@@ -1,2 +1,2 @@
 # Samostatné závislosti pro sestavení překladu; odpovídá omezení upstreamu.
-sphinx<9.0.0
+sphinx==8.2.3

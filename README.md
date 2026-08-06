@@ -28,6 +28,14 @@ Pythonu 3.14.6 v `source/_intersphinx/python-3.14.6.inv`, takže běžné sestav
 HTML nevyžaduje připojení k internetu. Při přechodu na jinou verzi Pythonu je
 nutné aktualizovat inventář i položku `intersphinx_mapping` v `source/conf.py`.
 
+## GitHub Actions a GitHub Pages
+
+Workflow `.github/workflows/pages.yml` při každém pushi do větve `main` stáhne
+přesný referenční commit CPythonu, zkontroluje bloky kódu, sestaví HTML bez
+varování a publikuje výsledek přes GitHub Pages. U pull requestů provede pouze
+kontrolu a sestavení bez publikace. Workflow lze spustit také ručně na kartě
+Actions.
+
 ## Sestavení PDF
 
 PDF vyžaduje distribuci TeXu s příkazy `lualatex` a `latexmk`:

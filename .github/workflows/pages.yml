@@ -1,0 +1,78 @@
+name: Kontrola a publikace GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Kontrola a sestavení
+    runs-on: ubuntu-latest
+    steps:
+      - name: Stažení českého překladu
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Stažení referenčního tutorialu CPythonu
+        uses: actions/checkout@v6
+        with:
+          repository: python/cpython
+          ref: c63aec69bd59c55314c06c23f4c22c03de76fe45
+          path: upstream-cpython
+          sparse-checkout: Doc/tutorial
+          sparse-checkout-cone-mode: true
+          persist-credentials: false
+
+      - name: Nastavení Pythonu
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+          cache: pip
+
+      - name: Instalace závislostí
+        run: python -m pip install --disable-pip-version-check -r requirements.txt
+
+      - name: Kontrola bloků kódu
+        run: python scripts/check_code_blocks.py
+
+      - name: Sestavení HTML bez varování
+        run: python -m sphinx -E -a -W --keep-going -b html source outputs/html
+
+      - name: Vypnutí zpracování Jekyllem
+        run: touch outputs/html/.nojekyll
+
+      - name: Nastavení GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Uložení sestaveného webu
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: outputs/html
+
+  deploy:
+    name: Publikace
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publikace na GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
