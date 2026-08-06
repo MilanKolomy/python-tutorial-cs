@@ -53,7 +53,7 @@ jobs:
         run: touch outputs/html/.nojekyll
 
       - name: Nastavení GitHub Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Uložení sestaveného webu
         uses: actions/upload-pages-artifact@v4
