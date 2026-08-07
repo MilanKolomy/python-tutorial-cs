@@ -42,6 +42,7 @@ div.admonition p.admonition-title {
     background: color-mix(in srgb, var(--reader-bg) 94%, transparent);
     box-shadow: 0 2px 10px rgb(0 0 0 / 12%);
     backdrop-filter: blur(8px);
+    transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
 .reader-controls__separator {
@@ -50,7 +51,8 @@ div.admonition p.admonition-title {
     background: var(--reader-border);
 }
 
-.reader-controls button {
+.reader-controls button,
+.reader-controls__nav-link {
     min-width: 38px;
     height: 36px;
     padding: 0 10px;
@@ -61,11 +63,13 @@ div.admonition p.admonition-title {
     cursor: pointer;
 }
 
-.reader-controls button:hover {
+.reader-controls button:hover,
+.reader-controls__nav-link:hover {
     background: var(--reader-surface);
 }
 
-.reader-controls button:focus-visible {
+.reader-controls button:focus-visible,
+.reader-controls__nav-link:focus-visible {
     outline: 2px solid var(--reader-link);
     outline-offset: -3px;
 }
@@ -77,6 +81,30 @@ div.admonition p.admonition-title {
 
 .reader-controls__theme {
     font-size: 18px !important;
+}
+
+.reader-controls__mobile {
+    display: none;
+}
+
+.reader-controls__nav-link {
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.reader-controls__nav-link[aria-disabled="true"] {
+    cursor: default;
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+.reader-controls__menu {
+    align-items: center;
+    justify-content: center;
+    font-size: 22px !important;
 }
 
 .reader-status {
@@ -197,10 +225,130 @@ html[data-reader-theme="dark"] button {
     color: var(--reader-text);
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 800px) {
+    body {
+        box-sizing: border-box;
+        padding: 66px 18px 20px;
+    }
+
     .reader-controls {
-        top: 8px;
-        right: 8px;
+        top: 0;
+        right: 0;
+        left: 0;
+        justify-content: center;
+        width: 100%;
+        min-height: 48px;
+        border-width: 0 0 1px;
+        border-radius: 0;
+        background: var(--reader-bg);
+        box-shadow: 0 2px 9px rgb(0 0 0 / 16%);
+        backdrop-filter: none;
+    }
+
+    .reader-controls--hidden {
+        transform: translateY(-105%);
+        box-shadow: none;
+    }
+
+    body.mobile-menu-open .reader-controls {
+        transform: translateY(0);
+    }
+
+    .reader-controls__mobile {
+        display: flex;
+    }
+
+    .reader-controls button,
+    .reader-controls__nav-link {
+        min-width: 38px;
+        height: 48px;
+        padding: 0 8px;
+    }
+
+    .reader-controls__nav-link {
+        flex: 1 1 auto;
+        gap: 4px;
+        max-width: 105px;
+    }
+
+    .reader-controls__menu {
+        flex: 0 0 48px;
+    }
+
+    div.sphinxsidebar {
+        position: fixed;
+        z-index: 999;
+        top: 48px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        box-sizing: border-box;
+        width: 100%;
+        margin: 0;
+        padding: 20px 22px 42px;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        visibility: hidden;
+        background: var(--reader-bg);
+        color: var(--reader-text);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-16px);
+        transition: opacity 160ms ease, transform 160ms ease, visibility 160ms;
+    }
+
+    body.mobile-menu-open {
+        overflow: hidden;
+    }
+
+    body.mobile-menu-open div.sphinxsidebar {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    div.sphinxsidebarwrapper {
+        max-width: 680px;
+        margin: 0 auto;
+    }
+
+    div.sphinxsidebar h3,
+    div.sphinxsidebar h4,
+    div.sphinxsidebar p,
+    div.sphinxsidebar h3 a {
+        color: var(--reader-text);
+    }
+
+    div.sphinxsidebar a {
+        color: var(--reader-link);
+    }
+
+    div.sphinxsidebar p.logo {
+        display: block;
+    }
+
+    div.document {
+        width: 100%;
+        margin: 0;
+    }
+
+}
+
+@media screen and (max-width: 350px) {
+    .reader-controls__nav-label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reader-controls,
+    div.sphinxsidebar {
+        transition: none;
     }
 }
 
