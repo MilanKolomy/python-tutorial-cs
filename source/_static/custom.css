@@ -258,6 +258,10 @@ html[data-reader-theme="dark"] button {
         display: flex;
     }
 
+    .reader-controls__separator {
+        display: none;
+    }
+
     .reader-controls button,
     .reader-controls__nav-link {
         min-width: 38px;
@@ -325,7 +329,9 @@ html[data-reader-theme="dark"] button {
         color: var(--reader-text);
     }
 
-    div.sphinxsidebar a {
+    div.sphinxsidebar a,
+    div.sphinxsidebar a:hover {
+        border-bottom: 0;
         color: var(--reader-link);
     }
 
