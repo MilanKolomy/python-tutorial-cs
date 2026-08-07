@@ -29,6 +29,15 @@ div.admonition p.admonition-title {
     font-family: var(--reader-font-family);
 }
 
+.translation-credit {
+    box-sizing: border-box;
+    width: 1080px;
+    margin: -20px auto 30px;
+    color: var(--reader-muted);
+    font-size: 14px;
+    text-align: right;
+}
+
 .reader-controls {
     position: fixed;
     top: 14px;
@@ -229,6 +238,12 @@ html[data-reader-theme="dark"] button {
     body {
         box-sizing: border-box;
         padding: 66px 18px 20px;
+    }
+
+    .translation-credit {
+        width: 100%;
+        margin: 28px auto 8px;
+        text-align: center;
     }
 
     .reader-controls {
