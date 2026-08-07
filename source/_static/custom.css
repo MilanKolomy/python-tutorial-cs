@@ -235,7 +235,7 @@ html[data-reader-theme="dark"] button {
         top: 0;
         right: 0;
         left: 0;
-        justify-content: center;
+        justify-content: flex-start;
         width: 100%;
         min-height: 48px;
         border-width: 0 0 1px;
@@ -271,8 +271,13 @@ html[data-reader-theme="dark"] button {
         max-width: 105px;
     }
 
+    .reader-controls__prev {
+        margin-left: auto;
+    }
+
     .reader-controls__menu {
         flex: 0 0 48px;
+        margin-left: auto;
     }
 
     div.sphinxsidebar {
@@ -322,6 +327,15 @@ html[data-reader-theme="dark"] button {
 
     div.sphinxsidebar a {
         color: var(--reader-link);
+    }
+
+    div.sphinxsidebar ul li a {
+        display: flex;
+        box-sizing: border-box;
+        min-height: 42px;
+        padding: 7px 5px;
+        align-items: center;
+        line-height: 1.45;
     }
 
     div.sphinxsidebar p.logo {
