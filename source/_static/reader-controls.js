@@ -6,7 +6,7 @@
     const MIN_SCALE = 0.85;
     const MAX_SCALE = 1.30;
     const SCALE_STEP = 0.05;
-    const MOBILE_BREAKPOINT = 800;
+    const MOBILE_BREAKPOINT = 1080;
 
     function loadValue(key, fallback) {
         try {

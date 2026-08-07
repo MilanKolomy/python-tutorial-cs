@@ -225,7 +225,7 @@ html[data-reader-theme="dark"] button {
     color: var(--reader-text);
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1080px) {
     body {
         box-sizing: border-box;
         padding: 66px 18px 20px;
