@@ -38,14 +38,54 @@ Actions.
 
 ## Sestavení PDF
 
-PDF vyžaduje distribuci TeXu s příkazy `lualatex` a `latexmk`:
+PDF se vytváří ze stejných RST souborů jako HTML. Je potřeba:
+
+- projektové prostředí `.venv` se Sphinxem 8.2.3;
+- distribuce TeXu s příkazy `lualatex` a `makeindex` v systémové proměnné `PATH`.
+
+Ve Windows je vhodný [MiKTeX](https://miktex.org/download) nebo
+[TeX Live](https://tug.org/texlive/windows.html). Při instalaci MiKTeXu povolte
+automatickou instalaci chybějících balíčků. Po instalaci otevřete nový PowerShell
+a ověřte příkazy `lualatex --version` a `makeindex --version`.
+
+Dostupné kapitoly vypíšete příkazem:
+
+```powershell
+.\.venv\Scripts\python.exe .\scripts\build_pdf.py --list
+```
+
+Celý tutorial sestavíte takto:
+
+```powershell
+.\.venv\Scripts\python.exe .\scripts\build_pdf.py --all
+```
+
+Jednu nebo více kapitol lze vybrat opakováním volby `--chapter`:
+
+```powershell
+.\.venv\Scripts\python.exe .\scripts\build_pdf.py --chapter introduction
+.\.venv\Scripts\python.exe .\scripts\build_pdf.py --chapter introduction --chapter controlflow
+```
+
+Celý tutorial se uloží jako `outputs/pdf/python-tutorial-cs-3.14.6.pdf`.
+Jedna kapitola dostane číslo a bezpečný název, například
+`outputs/pdf/03-neformalni-uvod-do-pythonu.pdf`. Výběr více kapitol používá název
+například `outputs/pdf/python-tutorial-cs-kapitoly-03-04.pdf`.
+
+Při každém spuštění skript znovu vytvoří pouze svůj pracovní adresář `work/pdf/`.
+Zdrojové RST soubory, `upstream-cpython/`, HTML výstup ani jiná část `work/` se
+nemění. Hotové PDF v `outputs/pdf/` se nahradí až po úspěšném sestavení.
+
+Pokud skript hlásí chybějící Sphinx, spusťte jej Pythonem z `.venv` a znovu
+nainstalujte `requirements.txt`. Při chybějícím `lualatex` nebo `makeindex`
+dokončete instalaci TeXu a otevřete nový terminál. Podrobnosti o případné chybě
+LuaLaTeXu zůstávají v `work/pdf/latex/python-tutorial-cs.log`.
+
+Původní PowerShell příkaz pro celý tutorial zůstává dostupný jako zkratka:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\build_pdf.ps1
 ```
-
-Sphinx vytvoří dočasné soubory v `work/latex/`; hotové PDF skript uloží jako
-`outputs/pdf/python-tutorial-cs.pdf`.
 
 Původní dokumentace a ukázkový kód jsou copyright © Python Software Foundation
 a podléhají licenci PSF. Jde o neoficiální český překlad pro osobní studijní

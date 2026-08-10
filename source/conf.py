@@ -51,9 +51,51 @@ latex_documents = [
 latex_elements = {
     "papersize": "a4paper",
     "pointsize": "10pt",
+    "classoptions": ",oneside,openany",
     "fontpkg": r"""
+\defaultfontfeatures{Ligatures=TeX}
 \setmainfont{Latin Modern Roman}
 \setsansfont{Latin Modern Sans}
 \setmonofont{Latin Modern Mono}
+\newfontfamily\cjkfont{Yu Gothic}
+""",
+    "sphinxsetup": "verbatimwrapslines=true,verbatimforcewraps=true",
+    "preamble": r"""
+\usepackage{newunicodechar}
+\newunicodechar{景}{{\cjkfont 景}}
+\newunicodechar{太}{{\cjkfont 太}}
+\newunicodechar{郎}{{\cjkfont 郎}}
+\renewcommand{\literalblockcontinuesname}{pokračování na další straně}
+\setlength{\emergencystretch}{3em}
+""",
+    "maketitle": r"""
+\makeatletter
+\hypersetup{
+  pdftitle={\@title},
+  pdfauthor={Python Software Foundation; Milan Kolomý},
+  pdfsubject={Neoficiální český překlad tutorialu Pythonu 3.14.6},
+  pageanchor=false
+}
+\begin{titlepage}
+  \centering
+  \vspace*{0.14\textheight}
+  {\Huge\bfseries \@title\par}
+  \vspace{1.4cm}
+  {\Large Neoficiální český překlad\par}
+  \vfill
+  {\large © 2001--2026 Python Software Foundation\par}
+  \vspace{0.45cm}
+  {\large Vytvořil Milan Kolomý za pomocí ChatGPT Codex\par}
+  \vspace{1.2cm}
+  {\small Vygenerováno pomocí Sphinx 8.2.3 a LuaLaTeX.\par}
+  \vspace{0.25cm}
+  {\small Zdrojová verze:\par}
+  {\small\url{https://github.com/MilanKolomy/python-tutorial-cs}\par}
+\end{titlepage}
+\hypersetup{pageanchor=true}
+\makeatother
+\clearpage
 """,
 }
+
+latex_show_urls = "footnote"
