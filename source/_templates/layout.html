@@ -1,5 +1,25 @@
 {% extends "!layout.html" %}
 
+{% block relbar_bottom %}
+  {% if prev or next %}
+    <nav class="chapter-navigation" aria-label="Navigace mezi kapitolami">
+      {% if prev %}
+        <a class="chapter-navigation__previous" href="{{ prev.link|e }}" title="{{ prev.title|striptags|e }}">
+          &lsaquo; Předchozí
+        </a>
+      {% endif %}
+      {% if prev and next %}
+        <span class="chapter-navigation__separator" aria-hidden="true">|</span>
+      {% endif %}
+      {% if next %}
+        <a class="chapter-navigation__next" href="{{ next.link|e }}" title="{{ next.title|striptags|e }}">
+          Další &rsaquo;
+        </a>
+      {% endif %}
+    </nav>
+  {% endif %}
+{% endblock %}
+
 {% block footer %}
   {{ super() }}
   <div class="translation-credit">

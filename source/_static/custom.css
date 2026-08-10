@@ -42,6 +42,33 @@ div.footer,
     margin: -20px auto 30px;
 }
 
+.chapter-navigation {
+    display: flex;
+    margin: 36px 0 8px;
+    padding: 20px 0 4px;
+    border-top: 1px solid var(--reader-border);
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    font-size: 16px;
+}
+
+.chapter-navigation a {
+    border-bottom: 0;
+    color: var(--reader-link);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.chapter-navigation a:hover {
+    border-bottom: 0;
+    text-decoration: underline;
+}
+
+.chapter-navigation__separator {
+    color: var(--reader-muted);
+}
+
 .reader-controls {
     position: fixed;
     top: 14px;
