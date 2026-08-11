@@ -1,3 +1,8 @@
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent / "_ext"))
+
 project = "Tutorial Pythonu"
 author = "Python Software Foundation; neoficiální český překlad"
 copyright = "2001–2026 Python Software Foundation; neoficiální český překlad"
@@ -10,7 +15,7 @@ root_doc = "index"
 source_suffix = ".rst"
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
-extensions = ["sphinx.ext.doctest", "sphinx.ext.intersphinx"]
+extensions = ["sphinx.ext.doctest", "sphinx.ext.intersphinx", "cpython_compat"]
 templates_path = ["_templates"]
 html_theme = "alabaster"
 html_theme_options = {

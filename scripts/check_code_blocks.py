@@ -53,8 +53,8 @@ def read_indented_block(lines: list[str], start: int, parent_indent: int) -> tup
     return index, normalized
 
 
-def extract_code_blocks(path: Path) -> list[CodeBlock]:
-    lines = path.read_text(encoding="utf-8").splitlines()
+def extract_code_blocks_from_text(text: str) -> list[CodeBlock]:
+    lines = text.splitlines()
     blocks: list[CodeBlock] = []
     index = 0
     while index < len(lines):
@@ -74,6 +74,10 @@ def extract_code_blocks(path: Path) -> list[CodeBlock]:
                 continue
         index += 1
     return blocks
+
+
+def extract_code_blocks(path: Path) -> list[CodeBlock]:
+    return extract_code_blocks_from_text(path.read_text(encoding="utf-8"))
 
 
 def compare_file(upstream: Path, translated: Path) -> list[str]:

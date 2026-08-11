@@ -46,6 +46,9 @@ jobs:
       - name: Kontrola bloků kódu
         run: python scripts/check_code_blocks.py
 
+      - name: Kontrola vestavěných funkcí
+        run: python scripts/check_functions_source.py
+
       - name: Sestavení HTML bez varování
         run: python -m sphinx -E -a -W --keep-going -b html source outputs/html
 

@@ -17,10 +17,14 @@ py -3 -m venv .venv
 
 ```powershell
 .\.venv\Scripts\python.exe .\scripts\check_code_blocks.py
+.\.venv\Scripts\python.exe .\scripts\check_functions_source.py
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\build_html.ps1
 ```
 
 Výsledné stránky jsou v `outputs/html/index.html`.
+
+Kontrola vestavěných funkcí porovnává bloky kódu, inline kód, signatury,
+direktivy, cíle odkazů, štítky a URL s přesným zdrojem CPythonu 3.14.6.
 
 Externí odkazy do ostatních částí dokumentace Pythonu řeší rozšíření
 `sphinx.ext.intersphinx`. Projekt používá lokální kopii oficiálního inventáře

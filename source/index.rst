@@ -14,3 +14,9 @@ copyright © Python Software Foundation a podléhají licenci PSF.
 
    tutorial/index
    terminology
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Referenční dokumentace
+
+   library/functions
