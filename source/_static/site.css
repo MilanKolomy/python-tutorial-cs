@@ -236,8 +236,8 @@ html[data-reader-theme="dark"] div.admonition a tt {
     color: var(--reader-code-text);
 }
 
-html[data-reader-theme="dark"] a tt,
-html[data-reader-theme="dark"] a code {
+html[data-reader-theme="dark"] a.reference tt,
+html[data-reader-theme="dark"] a.reference code {
     color: var(--reader-link);
 }
 
