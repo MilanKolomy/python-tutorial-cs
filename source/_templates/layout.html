@@ -1,7 +1,20 @@
 {% extends "!layout.html" %}
 
+{% block document %}
+  {% if pagename == "library/functions" %}
+    <span id="top"></span>
+  {% endif %}
+  {{ super() }}
+{% endblock %}
+
 {% block relbar_bottom %}
-  {% if prev or next %}
+  {% if pagename == "library/functions" %}
+    <nav class="chapter-navigation" aria-label="Navigace na stránce">
+      <a class="chapter-navigation__previous" href="#top" title="Na začátek stránky">
+        &uarr; Nahoru
+      </a>
+    </nav>
+  {% elif prev or next %}
     <nav class="chapter-navigation" aria-label="Navigace mezi kapitolami">
       {% if prev %}
         <a class="chapter-navigation__previous" href="{{ prev.link|e }}" title="{{ prev.title|striptags|e }}">
