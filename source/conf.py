@@ -24,6 +24,7 @@ html_theme_options = {
 }
 html_title = "Tutorial Pythonu 3.14.6 – neoficiální český překlad"
 html_static_path = ["_static"]
+html_css_files = ["site.css"]
 html_js_files = ["reader-controls.js"]
 html_show_sourcelink = True
 

@@ -1,0 +1,444 @@
+:root {
+    --reader-font-scale: 1;
+    --reader-font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    --reader-bg: #ffffff;
+    --reader-surface: #f5f5f3;
+    --reader-text: #3e4349;
+    --reader-muted: #666b70;
+    --reader-border: #c8c9c7;
+    --reader-link: #004b6b;
+    --reader-code-bg: #ecf0f3;
+    --reader-code-text: #222222;
+}
+
+body {
+    font-family: var(--reader-font-family);
+    font-size: calc(17px * var(--reader-font-scale));
+}
+
+div.body h1,
+div.body h2,
+div.body h3,
+div.body h4,
+div.body h5,
+div.body h6,
+div.sphinxsidebar h3,
+div.sphinxsidebar h4,
+div.sphinxsidebar input,
+div.admonition p.admonition-title {
+    font-family: var(--reader-font-family);
+}
+
+div.footer,
+.translation-credit {
+    box-sizing: border-box;
+    width: 1080px;
+    color: var(--reader-muted);
+    font-size: 14px;
+    text-align: center;
+}
+
+.translation-credit {
+    margin: -20px auto 30px;
+}
+
+.chapter-navigation {
+    display: flex;
+    margin: 36px 0 8px;
+    padding: 20px 0 4px;
+    border-top: 1px solid var(--reader-border);
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    font-size: 16px;
+}
+
+.chapter-navigation a {
+    border-bottom: 0;
+    color: var(--reader-link);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.chapter-navigation a:hover {
+    border-bottom: 0;
+    text-decoration: underline;
+}
+
+.chapter-navigation__separator {
+    color: var(--reader-muted);
+}
+
+.reader-controls {
+    position: fixed;
+    top: 14px;
+    right: 16px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid var(--reader-border);
+    border-radius: 9px;
+    background: color-mix(in srgb, var(--reader-bg) 94%, transparent);
+    box-shadow: 0 2px 10px rgb(0 0 0 / 12%);
+    backdrop-filter: blur(8px);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.reader-controls__separator {
+    width: 1px;
+    height: 22px;
+    background: var(--reader-border);
+}
+
+.reader-controls button,
+.reader-controls__nav-link {
+    min-width: 38px;
+    height: 36px;
+    padding: 0 10px;
+    border: 0;
+    background: transparent;
+    color: var(--reader-text);
+    font: 600 14px/1 system-ui, sans-serif;
+    cursor: pointer;
+}
+
+.reader-controls button:hover,
+.reader-controls__nav-link:hover {
+    background: var(--reader-surface);
+}
+
+.reader-controls button:focus-visible,
+.reader-controls__nav-link:focus-visible {
+    outline: 2px solid var(--reader-link);
+    outline-offset: -3px;
+}
+
+.reader-controls button:disabled {
+    cursor: default;
+    opacity: 0.35;
+}
+
+.reader-controls__theme {
+    font-size: 18px !important;
+}
+
+.reader-controls__mobile {
+    display: none;
+}
+
+.reader-controls__nav-link {
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.reader-controls__nav-link[aria-disabled="true"] {
+    cursor: default;
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+.reader-controls__menu {
+    align-items: center;
+    justify-content: center;
+    font-size: 22px !important;
+}
+
+.reader-status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+html[data-reader-theme="dark"] {
+    color-scheme: dark;
+    --reader-bg: #171a1d;
+    --reader-surface: #23282d;
+    --reader-text: #d9dfe5;
+    --reader-muted: #aab2b9;
+    --reader-border: #3b434a;
+    --reader-link: #72b7d3;
+    --reader-code-bg: #22282e;
+    --reader-code-text: #e6edf3;
+    --reader-target-bg: #3a3328;
+}
+
+html[data-reader-theme="dark"] body,
+html[data-reader-theme="dark"] div.documentwrapper,
+html[data-reader-theme="dark"] div.body,
+html[data-reader-theme="dark"] div.footer {
+    background: var(--reader-bg);
+    color: var(--reader-text);
+}
+
+html[data-reader-theme="dark"] h1,
+html[data-reader-theme="dark"] h2,
+html[data-reader-theme="dark"] h3,
+html[data-reader-theme="dark"] h4,
+html[data-reader-theme="dark"] h5,
+html[data-reader-theme="dark"] h6,
+html[data-reader-theme="dark"] div.sphinxsidebar h3,
+html[data-reader-theme="dark"] div.sphinxsidebar h4,
+html[data-reader-theme="dark"] div.sphinxsidebar p,
+html[data-reader-theme="dark"] div.sphinxsidebar ul {
+    color: var(--reader-text);
+}
+
+html[data-reader-theme="dark"] a,
+html[data-reader-theme="dark"] div.sphinxsidebar a,
+html[data-reader-theme="dark"] div.sphinxsidebar h3 a {
+    color: var(--reader-link);
+}
+
+html[data-reader-theme="dark"] hr,
+html[data-reader-theme="dark"] table.docutils,
+html[data-reader-theme="dark"] table.docutils td,
+html[data-reader-theme="dark"] table.docutils th {
+    border-color: var(--reader-border);
+}
+
+html[data-reader-theme="dark"] dt.sig:target {
+    background: var(--reader-target-bg);
+    color: var(--reader-text);
+}
+
+html[data-reader-theme="dark"] div.admonition,
+html[data-reader-theme="dark"] div.topic,
+html[data-reader-theme="dark"] aside.topic {
+    border-color: var(--reader-border);
+    background: var(--reader-surface);
+    color: var(--reader-text);
+}
+
+html[data-reader-theme="dark"] pre,
+html[data-reader-theme="dark"] div.highlight,
+html[data-reader-theme="dark"] div.highlight pre,
+html[data-reader-theme="dark"] tt,
+html[data-reader-theme="dark"] code {
+    background: var(--reader-code-bg);
+    color: var(--reader-code-text);
+}
+
+html[data-reader-theme="dark"] tt.xref,
+html[data-reader-theme="dark"] code.xref,
+html[data-reader-theme="dark"] div.admonition a tt {
+    border-bottom-color: var(--reader-border);
+    background-color: var(--reader-code-bg);
+    color: var(--reader-code-text);
+}
+
+html[data-reader-theme="dark"] div.highlight span {
+    color: inherit;
+}
+
+html[data-reader-theme="dark"] div.highlight .c,
+html[data-reader-theme="dark"] div.highlight .c1,
+html[data-reader-theme="dark"] div.highlight .cm {
+    color: #9aa5af;
+}
+
+html[data-reader-theme="dark"] div.highlight .k,
+html[data-reader-theme="dark"] div.highlight .kc,
+html[data-reader-theme="dark"] div.highlight .kd,
+html[data-reader-theme="dark"] div.highlight .kn,
+html[data-reader-theme="dark"] div.highlight .kr,
+html[data-reader-theme="dark"] div.highlight .o {
+    color: #ff8b85;
+}
+
+html[data-reader-theme="dark"] div.highlight .s,
+html[data-reader-theme="dark"] div.highlight .s1,
+html[data-reader-theme="dark"] div.highlight .s2 {
+    color: #a8d7a8;
+}
+
+html[data-reader-theme="dark"] div.highlight .m,
+html[data-reader-theme="dark"] div.highlight .mi,
+html[data-reader-theme="dark"] div.highlight .mf {
+    color: #86c5ff;
+}
+
+html[data-reader-theme="dark"] div.highlight .nf,
+html[data-reader-theme="dark"] div.highlight .nc {
+    color: #d6b4ff;
+}
+
+html[data-reader-theme="dark"] input,
+html[data-reader-theme="dark"] button {
+    border-color: var(--reader-border);
+    background-color: var(--reader-surface);
+    color: var(--reader-text);
+}
+
+@media screen and (max-width: 1080px) {
+    body {
+        box-sizing: border-box;
+        padding: 66px 18px 20px;
+    }
+
+    div.footer {
+        display: block;
+        width: 100%;
+        margin: 28px auto 0;
+    }
+
+    .translation-credit {
+        width: 100%;
+        margin: 8px auto;
+    }
+
+    .reader-controls {
+        top: 0;
+        right: 0;
+        left: 0;
+        justify-content: flex-start;
+        width: 100%;
+        min-height: 48px;
+        border-width: 0 0 1px;
+        border-radius: 0;
+        background: var(--reader-bg);
+        box-shadow: 0 2px 9px rgb(0 0 0 / 16%);
+        backdrop-filter: none;
+    }
+
+    .reader-controls--hidden {
+        transform: translateY(-105%);
+        box-shadow: none;
+    }
+
+    body.mobile-menu-open .reader-controls {
+        transform: translateY(0);
+    }
+
+    .reader-controls__mobile {
+        display: flex;
+    }
+
+    .reader-controls__separator {
+        display: none;
+    }
+
+    .reader-controls button,
+    .reader-controls__nav-link {
+        min-width: 38px;
+        height: 48px;
+        padding: 0 8px;
+    }
+
+    .reader-controls__nav-link {
+        flex: 1 1 auto;
+        gap: 4px;
+        max-width: 105px;
+    }
+
+    .reader-controls__prev {
+        margin-left: auto;
+    }
+
+    .reader-controls__menu {
+        flex: 0 0 48px;
+        margin-left: auto;
+    }
+
+    div.sphinxsidebar {
+        position: fixed;
+        z-index: 999;
+        top: 48px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        box-sizing: border-box;
+        width: 100%;
+        margin: 0;
+        padding: 20px 22px 42px;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        visibility: hidden;
+        background: var(--reader-bg);
+        color: var(--reader-text);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-16px);
+        transition: opacity 160ms ease, transform 160ms ease, visibility 160ms;
+    }
+
+    body.mobile-menu-open {
+        overflow: hidden;
+    }
+
+    body.mobile-menu-open div.sphinxsidebar {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    div.sphinxsidebarwrapper {
+        max-width: 680px;
+        margin: 0 auto;
+    }
+
+    div.sphinxsidebar h3,
+    div.sphinxsidebar h4,
+    div.sphinxsidebar p,
+    div.sphinxsidebar h3 a {
+        color: var(--reader-text);
+    }
+
+    div.sphinxsidebar a,
+    div.sphinxsidebar a:hover {
+        border-bottom: 0;
+        color: var(--reader-link);
+    }
+
+    div.sphinxsidebar ul li a {
+        display: flex;
+        box-sizing: border-box;
+        min-height: 42px;
+        padding: 7px 5px;
+        align-items: center;
+        line-height: 1.45;
+    }
+
+    div.sphinxsidebar p.logo {
+        display: block;
+    }
+
+    div.document {
+        width: 100%;
+        margin: 0;
+    }
+
+}
+
+@media screen and (max-width: 350px) {
+    .reader-controls__nav-label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reader-controls,
+    div.sphinxsidebar {
+        transition: none;
+    }
+}
+
+@media print {
+    .reader-controls {
+        display: none !important;
+    }
+}
