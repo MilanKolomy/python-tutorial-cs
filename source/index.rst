@@ -19,4 +19,5 @@ copyright © Python Software Foundation a podléhají licenci PSF.
    :maxdepth: 2
    :caption: Referenční dokumentace
 
+   glossary
    library/functions

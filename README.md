@@ -18,6 +18,7 @@ py -3 -m venv .venv
 ```powershell
 .\.venv\Scripts\python.exe .\scripts\check_code_blocks.py
 .\.venv\Scripts\python.exe .\scripts\check_functions_source.py
+.\.venv\Scripts\python.exe .\scripts\check_glossary_source.py
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\build_html.ps1
 ```
 
@@ -25,6 +26,8 @@ Výsledné stránky jsou v `outputs/html/index.html`.
 
 Kontrola vestavěných funkcí porovnává bloky kódu, inline kód, signatury,
 direktivy, cíle odkazů, štítky a URL s přesným zdrojem CPythonu 3.14.6.
+Kontrola slovníku navíc ověřuje zachování anglických názvů hesel a indexových
+direktiv, aby odkazy z tutorialu zůstaly stabilní.
 
 Externí odkazy do ostatních částí dokumentace Pythonu řeší rozšíření
 `sphinx.ext.intersphinx`. Projekt používá lokální kopii oficiálního inventáře
@@ -35,10 +38,10 @@ nutné aktualizovat inventář i položku `intersphinx_mapping` v `source/conf.p
 ## GitHub Actions a GitHub Pages
 
 Workflow `.github/workflows/pages.yml` při každém pushi do větve `main` stáhne
-přesný referenční commit CPythonu, zkontroluje bloky kódu, sestaví HTML bez
-varování a publikuje výsledek přes GitHub Pages. U pull requestů provede pouze
-kontrolu a sestavení bez publikace. Workflow lze spustit také ručně na kartě
-Actions.
+přesný referenční commit CPythonu, zkontroluje bloky kódu, vestavěné funkce i
+slovník pojmů, sestaví HTML bez varování a publikuje výsledek přes GitHub Pages.
+U pull requestů provede pouze kontrolu a sestavení bez publikace. Workflow lze
+spustit také ručně na kartě Actions.
 
 ## Sestavení PDF
 
