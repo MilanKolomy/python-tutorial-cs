@@ -222,6 +222,14 @@ html[data-reader-theme="dark"] code {
     color: var(--reader-code-text);
 }
 
+html[data-reader-theme="dark"] tt.xref,
+html[data-reader-theme="dark"] code.xref,
+html[data-reader-theme="dark"] div.admonition a tt {
+    border-bottom-color: var(--reader-border);
+    background-color: var(--reader-code-bg);
+    color: var(--reader-code-text);
+}
+
 html[data-reader-theme="dark"] div.highlight span {
     color: inherit;
 }
