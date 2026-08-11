@@ -236,6 +236,11 @@ html[data-reader-theme="dark"] div.admonition a tt {
     color: var(--reader-code-text);
 }
 
+html[data-reader-theme="dark"] a tt.xref,
+html[data-reader-theme="dark"] a code.xref {
+    color: var(--reader-link);
+}
+
 html[data-reader-theme="dark"] div.highlight span {
     color: inherit;
 }
