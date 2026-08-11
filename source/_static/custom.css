@@ -169,6 +169,7 @@ html[data-reader-theme="dark"] {
     --reader-link: #72b7d3;
     --reader-code-bg: #22282e;
     --reader-code-text: #e6edf3;
+    --reader-target-bg: #3a3328;
 }
 
 html[data-reader-theme="dark"] body,
@@ -203,6 +204,11 @@ html[data-reader-theme="dark"] table.docutils,
 html[data-reader-theme="dark"] table.docutils td,
 html[data-reader-theme="dark"] table.docutils th {
     border-color: var(--reader-border);
+}
+
+html[data-reader-theme="dark"] dt.sig:target {
+    background: var(--reader-target-bg);
+    color: var(--reader-text);
 }
 
 html[data-reader-theme="dark"] div.admonition,
